@@ -21,7 +21,7 @@ console.log('The first sync print.');
 
 const test = {
     name: 'test name',
-    asyncMethod: function(callback, timeout) {
+    asyncMethod: function(callback, timeout = 0) {
         const cur = this;
         setTimeout(() => {
             if (timeout > 100)
@@ -39,7 +39,7 @@ const testAsyncPromise = promiseify(
 ).bind(test);
 
 (async() => {
-    let obj = await testAsyncPromise(0);
+    let obj = await testAsyncPromise();
     console.log(obj.name);
     obj.name = 'change name';
     obj = await testAsyncPromise(100);
